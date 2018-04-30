@@ -1,4 +1,5 @@
 // global variables
+// quotes is array containing quote objects: .quote .source .citation .year
 var quotes = [
   {quote: 'To argue with a person who has renounced the use of reason is like administering medicine to the dead',
   source: 'Thomas Paine', citation: 'The Crisis', year: '1776'},
@@ -30,7 +31,7 @@ var quotes = [
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-// returns random quote from the quotes array
+// returns random quote object from the quotes array
 function getRandomQuote(){
   var i = Math.floor(Math.random() * quotes.length);
   return quotes[i];
@@ -60,6 +61,8 @@ function printQuote(){
 
 // creates a random background color by using an inner function random
 // number generator to generate rgb values
+// also changes button color to match **LOSES HOVER CSS ATRIBUTE**
+// comment out line 71 to restore
 function randomBgColor(){
   var rVal = randomVal();
   var gVal = randomVal();
