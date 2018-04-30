@@ -1,3 +1,4 @@
+//Text Grow Version
 // GLOBAL VARIABLES
 var quoteFontSize = 3.98;
 // quoteTimerId holds the setInterval function used in newQuoteTimer() to
@@ -61,7 +62,7 @@ function printQuote(){
   var quote = getRandomQuote();
 
   // Decorates quote by splitting into array, randomly assigning <strong> or
-  // toUpperCase and rejoining the string 
+  // toUpperCase and rejoining the string
   var quoteText = quote.quote.split(' ');
   for(let i = 0; i < quoteText.length; i++){
     if(Math.floor(Math.random() * 10) > 5){
