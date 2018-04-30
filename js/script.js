@@ -1,15 +1,10 @@
-// GLOBAL VARIABLES 
+// GLOBAL VARIABLES
 var quoteFontSize = 3.98;
 // quoteTimerId holds the setInterval function used in newQuoteTimer() to
 // enable the manipulation of the timer
 var quoteTimerId;
 
-// DISABLED: for future revision see quoteSizeTimer()
-// sizeTimerId holds the setInterval function used in sizeTimer() for to enable
-// the manipulation of the timer
-//var sizeTimerId;
-
-// quotes is array containing quote objects: .quote .source .citation .year .tag
+// quotes is array containing quote objects: .quote .source .citation .year .title
 var quotes = [
   {quote: 'To argue with a person who has renounced the use of reason is like administering medicine to the dead',
   source: 'Thomas Paine', citation: 'The Crisis', year: '1776', title: 'Founding Father'},
@@ -41,7 +36,7 @@ var quotes = [
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-//on page load completiong first quote is created
+//on page load completion first quote is created
 printQuote();
 
 // returns random quote object from the quotes array
@@ -55,7 +50,6 @@ function getRandomQuote(){
 // CALLS: randomBgColor() to change the background color to a random value
 // CALLS: newQuoteTimer() to refresh quote after innactivity; printQuote clears
 // the timer each iteration clearInterval(quoteTimerId)
-// **DISABLED** CALLS: quoteSizeTimer() to slowly grow quote text
 function printQuote(){
   var quoteString = '';
   var quote = getRandomQuote();
@@ -73,7 +67,6 @@ function printQuote(){
   quoteText = quoteText.join(' ');
 
   clearInterval(quoteTimerId);
-  //clearInterval(quoteSizeTimer); //DISABLED - FOR FUTURE REVISION
 
   quoteString += '<p id="quote-text" class="quote"> ' + quoteText + '</p>';
   quoteString += '<p class="source"> ' + quote.source;
@@ -93,11 +86,10 @@ function printQuote(){
   randomBgColor();
 
   newQuoteTimer();
-  //quoteSizeTimer(); //DISABLED - FOR FUTURE REVISION - SEE quoteSizeTimer()
 }
 
-// initializes timer to quoteTimerId that calls printQuote() automatically after 30
-// seconds of user innactivity
+// initializes timer to quoteTimerId that calls printQuote() automatically
+// after 30 seconds of user innactivity
 function newQuoteTimer(){
   quoteTimerId = setInterval(printQuote, 30000);
 }
@@ -106,7 +98,7 @@ function newQuoteTimer(){
 // creates a random background color by using an inner function random
 // number generator to generate rgb values
 // also changes button color to match **LOSES HOVER CSS ATRIBUTE**
-// comment out line 71 to restore
+// comment out line 108 to restore
 function randomBgColor(){
   var rVal = randomVal();
   var gVal = randomVal();
@@ -118,28 +110,3 @@ function randomBgColor(){
     return Math.floor(Math.random() * 200);
   }
 }
-
-// DISABLED - FOR FUTURE REVISION :: MAKE QUOTE TEXT GROW
-// initializes timer to sizeTimerId and grabs first quote class element [0]
-// calls func changeSize and iterates with timer growing text 0.01rem
-// until 6rem - then kills timer
-/*
-function quoteSizeTimer(){
-  sizeTimerId = setInterval(changeSize, 100);
-}
-
-function changeSize(){
-  var quoteTextElem = document.getElementById('quote-text');
-  var styleFontString = '';
-  if (quoteFontSize < 4){
-    quoteFontSize += 0.001;
-    styleFontString = ' ' + quoteFontSize + 'rem';
-    quoteTextElem.style.fontSize = styleFontString;
-  } else {
-    quoteTextElem.style.fontSize = '4rem';
-    clearInterval(sizeTimerId);
-    quoteFontSize = 3.80;
-    printQuote();
-  }
-}
-*/
