@@ -36,7 +36,7 @@ var quotes = [
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-//on page load completion first quote is created
+// load first quote when page is loaded
 printQuote();
 
 // returns random quote object from the quotes array
